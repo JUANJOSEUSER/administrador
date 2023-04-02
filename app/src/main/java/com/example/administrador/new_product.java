@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -29,15 +32,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import modelo.model_product;
+
 public class new_product extends AppCompatActivity {
     FirebaseAuth myAuth;
     alert alertas;
     ArrayList<String> products=new ArrayList<>();
-    EditText nombre,Descripcion,precio;
+    EditText nombre,Descripcion,precio,Talla;
     FirebaseFirestore registro;
     StorageReference storage;
     ImageView imagen;
+    model_product modelo;
     String a;
+    private DatabaseReference Database;
+// ...
+
     private static final int CATEGORY_APP_GALLERY=1;
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
@@ -45,17 +54,14 @@ public class new_product extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_product);
-        registro= FirebaseFirestore.getInstance();
+//        registro= FirebaseFirestore.getInstance();
         nombre=findViewById(R.id.nombre);
         precio=findViewById(R.id.precio);
         Descripcion=findViewById(R.id.descripcion);
         imagen=findViewById(R.id.img_product);
         storage= FirebaseStorage.getInstance().getReference();
-        while (a==null){
-            regresar_info();
+        Database = FirebaseDatabase.getInstance().getReference();
 
-        }
-        System.out.println(a);
     }
     public void cloud(){
 
@@ -73,22 +79,24 @@ public class new_product extends AppCompatActivity {
         registro.collection("product_info").document("juan").set(product);
     }
 
-    public void regresar_info(){
-        registro.collection("product_info").document("juan").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
-                    a=documentSnapshot.getString("Nombre");
-                }else{
-                    alertas=new alert("no hay datos por ver");
-                }
-            }
-        });
-    }
-
+//    public void regresar_info(){
+//        registro.collection("product_info").document("juan").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                if (documentSnapshot.exists()){
+//                    a=documentSnapshot.getString("Nombre");
+//                }else{
+//                    alertas=new alert("no hay datos por ver");
+//                }
+//            }
+//        });
+//    }
+public void insert(){
+        modelo=new model_product(nombre.getText().toString(),Descripcion.getText().toString(),"M",Float.parseFloat(precio.getText().toString()));
+    Database.child("productos").child(nombre.getText().toString()).setValue(modelo);
+}
     public void añadir(View view) {
-        regresar_info();
-        System.out.println(a);
+        insert();
 //        cloud();
 //        cloud2();
     }
@@ -114,5 +122,17 @@ public class new_product extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void selec_talla(View view) {
+        CharSequence opciones[]={"XS","S","M","L","XL","XXL"};
+        AlertDialog.Builder ventana=new AlertDialog.Builder(this);
+        ventana.setSingleChoiceItems(opciones, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                System.out.println(opciones[which]);
+            }
+        });
+        ventana.show();
     }
 }
