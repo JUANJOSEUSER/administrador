@@ -8,12 +8,52 @@
     tools:layout_editor_absoluteX="-3dp"
     tools:layout_editor_absoluteY="-56dp">
 
+    <ImageView
+        android:id="@+id/conf_precio"
+        android:layout_width="23dp"
+        android:layout_height="21dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.408"
+        app:srcCompat="@android:drawable/presence_online" />
+
+    <ImageView
+        android:id="@+id/conf_nombre"
+        android:layout_width="23dp"
+        android:layout_height="21dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.31"
+        app:srcCompat="@android:drawable/presence_online" />
+
+    <ImageView
+        android:id="@+id/conf_descripcion"
+        android:layout_width="23dp"
+        android:layout_height="21dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.881"
+        app:srcCompat="@android:drawable/presence_online" />
+
     <EditText
         android:id="@+id/nombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="211dp"
+        android:layout_height="49dp"
+        android:background="@drawable/campos_texto"
         android:ems="10"
-        android:hint="Nombre"
+        android:hint=" Nombre"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,9 +67,10 @@
         android:id="@+id/precio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/campos_texto"
         android:ems="10"
-        android:hint="Precio"
-        android:inputType="numberDecimal"
+        android:hint=" Precio"
+        android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,9 +83,10 @@
         android:id="@+id/descripcion"
         android:layout_width="327dp"
         android:layout_height="176dp"
+        android:background="@drawable/campos_texto"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Descripcion"
+        android:hint=" Descripcion"
         android:inputType="textMultiLine"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,23 +95,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.839" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Talla"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.481" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="añadir"
         android:text="añadir"
+        android:background="@drawable/botones_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -81,8 +112,9 @@
         android:id="@+id/imagen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/buttom_secundary"
+        android:onClick="cancelar"
         android:text="Cancelar"
-        android:onClick="img"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.154"
@@ -92,22 +124,25 @@
 
     <ImageView
         android:id="@+id/img_product"
-        android:layout_width="170dp"
-        android:layout_height="152dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="444dp"
+        android:layout_width="161dp"
+        android:layout_height="143dp"
+        android:background="@drawable/campos_texto"
         android:contentDescription="@string/app_name"
         android:onClick="img"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.034"
         app:srcCompat="@drawable/add_plus_svgrepo_com" />
 
     <EditText
         android:id="@+id/talla"
         android:layout_width="120dp"
         android:layout_height="48dp"
+        android:background="@drawable/campos_texto"
         android:ems="10"
-        android:hint="Talla"
+        android:hint=" Talla"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -129,5 +164,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.541"
         app:srcCompat="@drawable/add_plus_svgrepo_com" />
+
+    <ImageView
+        android:id="@+id/conf_talla"
+        android:layout_width="23dp"
+        android:layout_height="21dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.726"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.537"
+        app:srcCompat="@android:drawable/presence_online" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
