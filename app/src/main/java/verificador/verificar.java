@@ -15,33 +15,49 @@ public class verificar {
         boolean tallas=false;
         if (Nombre.getText().toString()==null||!Nombre.getText().toString().matches("^[a-zA-Z ]{8,18}$")){
             Nombre.setError("Error el formato de no es el deseado");
+            nom.setVisibility(View.GONE);
             return false;
         }else {
             nom.setVisibility(View.VISIBLE);
         }
-        if (Descripcion.getText().toString()==null){
+        if (Descripcion.getText().toString()==null||!Descripcion.getText().toString().matches("^[a-zA-Z ]{12,50}$")){
             Descripcion.setError("Campo vacio");
+            des.setVisibility(View.GONE);
             return false;
         }else {
             des.setVisibility(View.VISIBLE);
         }
         if (precio.getText().toString()==null||!precio.getText().toString().matches("^[0-9]+(\\.[0-9]*)?$")){
             precio.setError("Error el formato de no es el deseado");
+            pre.setVisibility(View.GONE);
             return false;
         }else {
             pre.setVisibility(View.VISIBLE);
         }
 
         for (int i = 0; i <opciones.length ; i++) {
-           if (Talla.getText().toString()!=null||Talla.getText().toString().equals(opciones[i])){
+           if (Talla.getText().toString()!=null&&Talla.getText().toString().equals(opciones[i])){
                 tallas=true;
+                break;
            }
         }
         if (tallas==false){
             Talla.setError("No concuerda la talla");
+            ta.setVisibility(View.GONE);
             return false;
         }else{
             ta.setVisibility(View.VISIBLE);
+        }
+        return true;
+    }
+    public boolean veri_ingreso(EditText usuario,EditText pass){
+        if (usuario.getText().toString().isEmpty()){
+            usuario.setError("campos vacios");
+            return false;
+        }
+        if (pass.getText().toString().isEmpty()){
+            pass.setError("campo vacio");
+            return false;
         }
         return true;
     }

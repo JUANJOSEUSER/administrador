@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">administrador</string>
+    <string name="abrir">abrir</string>
+    <string name="cerrar">cerrar</string>
+    <string name="texto_restaurar">Introduce el e-mail asociado a tu cuenta de TicTacToe y te enviaremos un enlace para restaurar tu contraseña.</string>
+    <string name="restaurar">Restaurar contraseña</string>
+    <string name="ingresar_p1">Ingresar</string>
+    <string name="crear_cuenta_p1">Crear cuenta</string>
+    <string name="olvidar">He olvidado mi contraseña</string>
+    <string name="gmail">Gmail</string>
+    <string name="cerrar_sesion">Cerrar sesion</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

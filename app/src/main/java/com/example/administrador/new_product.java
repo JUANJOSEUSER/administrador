@@ -35,12 +35,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import animaciones.scale_anim;
 import modelo.model_product;
 import verificador.verificar;
 
 public class new_product extends AppCompatActivity {
     alert alertas;
     ArrayList<String> num_product = new ArrayList<>();
+    scale_anim animacion=new scale_anim();
 
 
     EditText nombre, Descripcion, precio, Talla;
@@ -69,12 +71,14 @@ public class new_product extends AppCompatActivity {
         conf_des=findViewById(R.id.conf_descripcion);
         conf_precio=findViewById(R.id.conf_precio);
         conf_talla=findViewById(R.id.conf_talla);
-
+        select();
     }
 
     public void setNum_product(ArrayList<String> num_product) {
         this.num_product = num_product;
     }
+
+
 
     public void select() {
         Database.child("num_product").addValueEventListener(new ValueEventListener() {
@@ -103,21 +107,27 @@ public class new_product extends AppCompatActivity {
     public void insert() {
         verificar vf=new verificar();
         vf.verificador(nombre, Descripcion,precio,Talla,conf_nom,conf_precio,conf_des,conf_talla);
-//        modelo = new model_product(nombre.getText().toString(), Descripcion.getText().toString(), Talla.getText().toString(), Float.parseFloat(precio.getText().toString()));
-//        Database.child("productos").child(nombre.getText().toString()).setValue(modelo);
+        modelo = new model_product(nombre.getText().toString(), Descripcion.getText().toString(), Talla.getText().toString(), precio.getText().toString());
+
+        Database.child("productos").child(nombre.getText().toString()).setValue(modelo);
     }
 
+    @SuppressLint("ResourceType")
     public void añadir(View view) {
+        animacion.animar(this,view);
         insert();
-//        select();
-//        for (int i = 0; i <2 ; i++) {
-//           select();
-//        }
-//        if (num_product.size() != 0) {
-//            insert2();
-//        }else if(num_product.size()==0){
-//            insert2();
-//        }
+
+
+        select();
+        for (int i = 0; i <2 ; i++) {
+           select();
+        }
+        System.out.println(num_product.size());
+        if (num_product.size() != 0) {
+            insert2();
+        }else if(num_product.size()==0){
+            insert2();
+        }
 
 
 
@@ -127,9 +137,15 @@ public class new_product extends AppCompatActivity {
 
 
     public void img(View view) {
-        Intent img = new Intent(Intent.ACTION_PICK);
-        img.setType("image/*");
-        startActivityForResult(img, CATEGORY_APP_GALLERY);
+        if (nombre.getText().toString().matches("[a-zA-Z ]{8,18}$")&&nombre.getText().toString()!=null){
+            Intent img = new Intent(Intent.ACTION_PICK);
+            img.setType("image/*");
+            startActivityForResult(img, CATEGORY_APP_GALLERY);
+        }else{
+            alertas=new alert("Debes colocar un nombre para el amagen");
+            alertas.show(getSupportFragmentManager(),"dialogo");
+        }
+
     }
 
     @Override
@@ -165,5 +181,10 @@ public class new_product extends AppCompatActivity {
         });
 
         ventana.show();
+    }
+
+    public void cancelar(View view) {
+        animacion.animar(this,view);
+        finish();
     }
 }

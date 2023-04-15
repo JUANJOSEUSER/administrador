@@ -12,19 +12,22 @@ import androidx.fragment.app.DialogFragment;
 
 public class alert extends DialogFragment {
 String modo;
-Context pantalla;
-
-public alert(String modo){
-    modo=modo;
-}
 
 
+    public alert(String modo) {
+        this.modo = modo;
+    }
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
         alert.setTitle("INFORMACION");
-        alert.setMessage(modo);
+        alert.setMessage(this.modo);
+        alert.setPositiveButton("Acceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
+            }
+        });
         return alert.create();
 
     }

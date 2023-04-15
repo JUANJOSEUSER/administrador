@@ -2,13 +2,17 @@ package modelo;
 
 public class model_product {
     String Nombre,Descripcion,Talla;
-    Float Precio;
+    String Precio;
 
-    public model_product(String nombre, String descripcion, String talla, Float precio) {
+    public model_product(String nombre, String descripcion, String talla, String  precio) {
         Nombre = nombre;
         Descripcion = descripcion;
         Talla = talla;
         Precio = precio;
+    }
+
+    public model_product() {
+
     }
 
     public String getNombre() {
@@ -23,7 +27,7 @@ public class model_product {
         return Talla;
     }
 
-    public Float getPrecio() {
+    public String  getPrecio() {
         return Precio;
     }
 }
