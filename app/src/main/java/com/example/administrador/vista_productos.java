@@ -9,7 +9,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,7 +18,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -146,7 +144,7 @@ public class vista_productos extends Fragment {
             mandar_datos(listas.get(pos));
             ver_mas vista=new ver_mas();
             vista.setArguments(getArguments());
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.escenario,vista).addToBackStack(null).commit();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame,vista).addToBackStack(null).commit();
         }
 
         private class Adaptador extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -157,16 +155,16 @@ public class vista_productos extends Fragment {
 
             public Adaptador(@NonNull View itemView) {
                 super(itemView);
-                p1 = itemView.findViewById(R.id.nom_product);
-                p2 = itemView.findViewById(R.id.precio_product);
-                img = itemView.findViewById(R.id.product_img);
+                p1 = itemView.findViewById(R.id.cesta_nombre);
+                p2 = itemView.findViewById(R.id.cesta_precio);
+                img = itemView.findViewById(R.id.cesta_img);
                 itemView.setOnClickListener(this);
 
             }
 
             public void imprimir(int position) {
-                int ancho = 200;
-                int alto = 170;
+                int ancho = 400;
+                int alto = 300;
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ancho, alto);
 
 

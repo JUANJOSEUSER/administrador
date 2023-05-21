@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
+<group android:checkableBehavior="single">
     <item
         android:id="@+id/inicio_menu"
         android:icon="@drawable/home_solid_icon_235478"
@@ -22,4 +22,7 @@
         android:id="@+id/cerrar_menu"
         android:icon="@drawable/session_exit_sign_out_log_logout_ecommerce_icon_224958"
         android:title="Cerrar sesion" />
+
+</group>
+
 </menu>

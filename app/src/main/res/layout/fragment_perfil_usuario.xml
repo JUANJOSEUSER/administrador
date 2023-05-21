@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".perfil_usuario">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nombre_perfil_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:layout_marginTop="50dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/imagen_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="122dp"
+                android:visibility="visible"
+                tools:src="@drawable/account_avatar_face_man_people_profile_user_icon_123197" />
+
+            <Button
+                android:id="@+id/mi_cuenta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="90dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/botones_primary"
+                android:text="Mi cuenta" />
+
+            <Button
+                android:id="@+id/cambio_contraseña_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/buttom_secundary"
+                android:text="Cambiar Contraseña"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/cambio_correo_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/buttom_secundary"
+                android:text="Cambiar Correo"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/cerrar_sesion_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/buttom_secundary"
+                android:text="@string/cerrar_sesion"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/eliminar_cuenta_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/buttom_secundary"
+                android:text="Eliminar cuenta"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

@@ -61,4 +61,51 @@ public class verificar {
         }
         return true;
     }
+
+    public boolean verificacion_crear_cuenta(EditText Nombre, EditText gmail, EditText telefono,EditText password,EditText password2){
+     if (!Nombre.getText().toString().matches("^[a-zA-Z]{3,12}$")){
+         Nombre.setError("Error el Nombre no cumple  las restricciones");
+        return false;
+     }
+     if (!gmail.getText().toString().matches("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+")){
+         gmail.setError("Error en el gmail no es el formato deseado");
+         return false;
+
+     }
+        if (!telefono.getText().toString().matches("^\\d{9}$")){
+            telefono.setError("Error el telefono no es valido");
+            return false;
+        }
+        if (password.getText().toString().matches("^(?=.*\\d)[a-zA-Z\\d]{6,12}$")){
+            password.setError("Error la contraseña no cumple la restriccion");
+            return false;
+        }
+        if (!password.getText().toString().equals(password2.getText().toString())){
+            password2.setError("Error son iguales ");
+        return false;
+        }
+        return true;
+    }
+    public boolean verificacion_crear_cuenta_admin(EditText gmail,EditText password,EditText password2){
+
+        if (!gmail.getText().toString().matches("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+")&&gmail.getText().toString().isEmpty()){
+            gmail.setError("Error en el gmail no es el formato deseado");
+            return false;
+
+        }
+
+        if (!password.getText().toString().matches("^(?=.*\\d)[a-zA-Z\\d]{6,12}$")&&password.getText().toString().isEmpty()){
+            password.setError("Error la contraseña no cumple la restriccion");
+            return false;
+        }
+        if (!password.getText().toString().equals(password2.getText().toString())){
+            password2.setError("Error son iguales ");
+            return false;
+        }
+        if (password2.getText().toString().isEmpty()){
+            password2.setError("Error campo vacio");
+            return false;
+        }
+        return true;
+    }
 }

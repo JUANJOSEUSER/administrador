@@ -1,7 +1,5 @@
 package com.example.administrador;
 
-import static android.content.Intent.CATEGORY_APP_GALLERY;
-
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,21 +17,16 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import animaciones.scale_anim;
 import modelo.model_product;
