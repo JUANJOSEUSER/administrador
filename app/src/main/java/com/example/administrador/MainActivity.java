@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     scale_anim animacion=new scale_anim();
     final String variables="usuarios",admin="administradores";
     FirebaseAuth firebase;
+    FirebaseFirestore firestore=FirebaseFirestore.getInstance();
     EditText gmail,password;
     FirebaseUser users=null;
     final String usuario="super-root@root.es";
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         users=firebase.getCurrentUser();
         if (users!=null){
-            vista_usuario(users.getEmail());
+            vista_admin(users.getEmail());
             vista_usuario(users.getEmail());
         }
     }
@@ -152,17 +153,16 @@ public boolean super_usuario(String usuario,String contraseña){
 
     }
     public void vista_usuario(String user){
-//        DocumentReference referencias = documentos.collection(variables).document(user);
-//        referencias.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                if (documentSnapshot.exists()) {
-//// ingresa el usuario
-//                }
-//            }
-//        });
-        Intent a=new Intent(this,main_usuario.class);
-        startActivity(a);
+
+       firestore.collection("usuarios").document(user).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                 Intent a=new Intent(getApplication(),main_usuario.class);
+                 startActivity(a);
+            }
+        });
+
+
     }
     public void vista_admin(String user){
         documentos.collection(admin).document(variables).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

@@ -44,6 +44,8 @@ import com.paypal.android.sdk.payments.PayPalConfiguration;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import modelo.usuario;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link cesta#newInstance} factory method to
@@ -139,9 +141,23 @@ Button boton_añadir;
         boton_añadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a=new Intent(getActivity(),pagos.class);
-                a.putExtra("precio",precio_guardado);
-                startActivity(a);
+                firestore.collection("usuarios").document(user.getEmail()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        usuario us=new usuario();
+                        us=documentSnapshot.toObject(usuario.class);
+                        if (us.getProductos().size()!=0){
+                            Intent a=new Intent(getActivity(),pagos.class);
+                            a.putExtra("precio",precio_guardado);
+                            startActivity(a);
+                        }else{
+                            alert alerta=new alert("no tienes productos elige uno para poder comprar");
+                            alerta.show(getParentFragmentManager(),"alerta");
+                        }
+                    }
+                });
+
+
             }
         });
 
@@ -153,17 +169,21 @@ Button boton_añadir;
 
     }
     public ArrayList<String> unicos(ArrayList<String> a) {
-        ArrayList<String> unicos = new ArrayList<>();
-        unicos.add(a.get(0));
-        int d = 0;
-        for (int i = 0; i < a.size(); i++) {
-            if (!a.get(i).equals(unicos.get(d))) {
-                unicos.add(a.get(i));
-                d++;
-            }
+        if (a!=null&&a.size()!=0){
+            ArrayList<String> unicos = new ArrayList<>();
+            unicos.add(a.get(0));
+            int d = 0;
+            for (int i = 0; i < a.size(); i++) {
+                if (!a.get(i).equals(unicos.get(d))) {
+                    unicos.add(a.get(i));
+                    d++;
+                }
 
+            }
+            return unicos;
         }
-        return unicos;
+
+        return new ArrayList<>();
     }
     private class productos extends RecyclerView.Adapter<cesta.productos.Adaptador> {
 
@@ -212,7 +232,7 @@ Button boton_añadir;
                    switch (opciones[which]){
                        case "ELIMINAR":
                           eliminar(nuevalista,pos);
-
+                            prod.notifyDataSetChanged();
                            break;
                        case "AÑADIR":
                            nuevalista.add(unicos.get(pos));

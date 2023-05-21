@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class usuario {
     String Telefono,nombre,Dirrecion;
     ArrayList<String>productos;
-    String trasporte;
+    ArrayList<String> trasporte;
     ArrayList<String>historial;
 
 
-    public usuario(String telefono, String nombre, ArrayList<String> productos, String trasporte, ArrayList<String> historial,String direcion) {
+    public usuario(String telefono, String nombre, ArrayList<String> productos, ArrayList<String> trasporte, ArrayList<String> historial,String direcion) {
         Telefono = telefono;
         this.nombre = nombre;
         this.productos = productos;
@@ -34,11 +34,11 @@ public class usuario {
         this.productos = productos;
     }
 
-    public String getTrasporte() {
+    public ArrayList<String> getTrasporte() {
         return trasporte;
     }
 
-    public void setTrasporte(String trasporte) {
+    public void setTrasporte(ArrayList<String> trasporte) {
         this.trasporte = trasporte;
     }
 

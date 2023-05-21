@@ -98,6 +98,18 @@
                     android:text="Descripcion"
                     android:textSize="20sp" />
 
+                <Button
+                    android:id="@+id/eliminar_producto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Eliminar producto" />
+
+                <Button
+                    android:id="@+id/Ocultar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ocultar" />
+
             </LinearLayout>
         </ScrollView>
 

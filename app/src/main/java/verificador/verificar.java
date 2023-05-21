@@ -5,6 +5,8 @@ import android.widget.EdgeEffect;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.type.PostalAddress;
+
 public class verificar {
     String Nombre,Descripcion,precio;
 
@@ -20,7 +22,7 @@ public class verificar {
         }else {
             nom.setVisibility(View.VISIBLE);
         }
-        if (Descripcion.getText().toString()==null||!Descripcion.getText().toString().matches("^[a-zA-Z ]{12,50}$")){
+        if (Descripcion.getText().toString()==null||!Descripcion.getText().toString().matches("^[a-zA-Z ]{12,200}$")){
             Descripcion.setError("Campo vacio");
             des.setVisibility(View.GONE);
             return false;
@@ -107,5 +109,22 @@ public class verificar {
             return false;
         }
         return true;
+    }
+    public boolean verificar_cambio_cuenta(EditText nombre, EditText telefono, EditText dirrecion, EditText postal, EditText ciudad){
+if (!nombre.getText().toString().matches("^[a-zA-Z ]{8,18}$")){
+    nombre.setError("Error el nombre no cumple las restricciones");
+    return false;
+}
+if (!telefono.getText().toString().matches("^\\d{9}$")){
+    telefono.setError("Error el telefono debe de tener 9 digitos");
+    return false;
+
+}
+
+if (!postal.getText().toString().matches("^\\d{5}$")){
+    postal.setError("Error el codigo postal debe tener 5 digitos");
+    return false;
+}
+return true;
     }
 }

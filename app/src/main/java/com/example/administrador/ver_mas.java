@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -91,6 +94,7 @@ public class ver_mas extends Fragment {
         descripcion=a.findViewById(R.id.descrip);
         imagen=a.findViewById(R.id.vista_previa);
 
+
 base.child("productos").child(sacar_referencias()).addValueEventListener(new ValueEventListener() {
     @Override
     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -107,6 +111,29 @@ if (snapshot.exists()){
 
     }
 });
+        a.findViewById(R.id.eliminar_producto).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                base.child("productos").child(sacar_referencias()).removeValue().isSuccessful();
+                base.child("num_product").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            ArrayList<String> md = new ArrayList<>();
+                            md = (ArrayList<String>) snapshot.child("Nombres").getValue();
+                            md.remove(sacar_referencias());
+                            base.child("num_product").child("Nombres").setValue(md);
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
 leer(sacar_referencias(),imagen);
         return a;
     }

@@ -93,7 +93,7 @@ public void crear_cuenta(){
 
     public void enviar_datos(String gmail){
 
-        firestore.collection("usuarios").document(gmail).set(new usuario(telefono.getText().toString(),nombre.getText().toString(),new ArrayList<>(),"",new ArrayList<>(),""));
+        firestore.collection("usuarios").document(gmail).set(new usuario(telefono.getText().toString(),nombre.getText().toString(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),""));
     }
     public void limpiar(){
         nombre.setText("");
