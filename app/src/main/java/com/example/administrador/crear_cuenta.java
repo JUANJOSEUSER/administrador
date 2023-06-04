@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -68,6 +69,7 @@ public void crear_cuenta(){
                         FirebaseUser user=firebase.getCurrentUser();
                         user.sendEmailVerification();
                         enviar_datos(gmail.getText().toString());
+                        sumar_finalizado();
                         limpiar();
                         alertas=new alert("se ha creado su cuenta porfavor verificar el correo enviado");
                         alertas.show(getSupportFragmentManager(),"alertas");
@@ -84,7 +86,29 @@ public void crear_cuenta(){
         Intent ventana=new Intent(this,MainActivity.class);
         startActivity(ventana);
     }
+    public void sumar_finalizado(){
+        firestore.collection("pedidos").document("usuarios nuevos").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                int a= documentSnapshot.getLong("numero").intValue();
+                a++;
 
+                DocumentReference ad= firestore.collection("pedidos").document("usuarios nuevos");
+                ad.update("numero",a).isSuccessful();
+            }
+        });
+        firestore.collection("pedidos").document("usuarios actuales").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                int a= documentSnapshot.getLong("numero").intValue();
+                a++;
+
+                DocumentReference ad= firestore.collection("pedidos").document("usuarios actuales");
+                ad.update("numero",a).isSuccessful();
+            }
+        });
+
+    }
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();

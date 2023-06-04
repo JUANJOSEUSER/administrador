@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="300dp"
+    android:background="#00DADADA"
     android:orientation="vertical">
 
     <ImageView
@@ -13,17 +14,35 @@
 
     <TextView
         android:id="@+id/Nombre_producto"
-        android:layout_width="186dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/Precio_producto"
-        android:layout_width="187dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_weight="1"
-        android:text="TextView" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tallas_v"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/Precio_producto"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textAlignment="textEnd"
+            android:textSize="16sp" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -83,6 +83,8 @@ CountryCodePicker cp;
                    us.setTelefono(tel.getText().toString());
                    us.setDirrecion(dire.getText().toString()+" pais:"+cp.getSelectedCountryName()+" codigo postal: "+postal.getText().toString()+" ciudad: "+ciudad.getText().toString());
                    firestore.collection("usuarios").document(user.getEmail()).set(us);
+                   alert alerta=new alert("Se ha Actualizado la cuenta");
+                   alerta.show(getSupportFragmentManager(),"alerta");
                 }
             });
         }

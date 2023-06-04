@@ -57,7 +57,7 @@
             android:id="@+id/pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Contraseña"
+            android:hint="@string/contra"
             android:inputType="textPassword"
             android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:onClick="nueva_contraseña"
-        android:text="He olvidado mi contraseña"
+        android:text="@string/olvidar"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Profit</string>
+    <string name="abrir">打开</string>
+    <string name="cerrar">关闭</string>
+    <string name="aceptar">接受</string>
+    <string name="cancelar">取消</string>
+    <string name="micuenta">我的账户</string>
+    <string name="texto_restaurar">请输入与您的Profit账户关联的电子邮件，并我们将发送一个链接来恢复您的密码。</string>
+    <string name="restaurar">恢复密码</string>
+    <string name="ingresar_p1">登录</string>
+    <string name="crear_cuenta_p1">创建账户</string>
+    <string name="olvidar">我忘记了我的密码</string>
+
+    <string name="cerrar_sesion">登出</string>
+
+
+    <string name="nombre">姓名</string>
+    <string name="telefono">电话</string>
+    <string name="gmail">Gmail</string>
+    <string name="contra">密码</string>
+    <string name="Confirmarcontra">确认密码</string>
+    <string name="politicas">接受条款和条件</string>
+    <string name="crear">创建</string>
+    <string name="pago">付款</string>
+    <string name="entrega">快速安全的交付</string>
+    <string name="productostuestilo">符合您风格的产品</string>
+    <string name="pagorealizado">付款成功</string>
+    <string name="listado">产品列表</string>
+    <string name="comprarya">立即购买</string>
+    <string name="inicioanuncio">我们在为所有女性提供高品质的运动服装方面拥有丰富的经验</string>
+    <string name="total">总计付款</string>
+    <string name="Cambiarcontra">更改密码</string>
+    <string name="cambiarcorreo">更改电子邮件</string>
+    <string name="Cerrarsesion">登出</string>
+    <string name="Añadiradmin">添加新管理员</string>
+    <string name="eliminarcuenta">删除账户</string>
+
+    <string name="metodopago">付款方式</string>
+    <string name="paypal">Paypal是Profit购买产品的付款方式，为用户提供更好的体验</string>
+    <string name="envios">Profit提供快速安全的交付方式，以提供更好的体验</string>
+    <string name="seguridad">Profit为用户提供安全的交付和付款方式</string>
+    <string name="redes">社交媒体</string>
+    <string name="pedidos">订单</string>
+    <string name="pedidosactuales">当前订单</string>
+    <string name="Historial">历史</string>
+    <string name="modulos">已启用的模块</string>
+    <string name="estadistica">统计数据</string>
+    <string name="gestionpedidos">订单管理</string>
+    <string name="Configuracion">设置</string>
+    <string name="Gestiondeproductos">产品管理</string>
+    <string name="precio">价格</string>
+    <string name="infopedido">订单信息</string>
+    <string name="Factura">下载发票</string>
+    <string name="entregado">已交付</string>
+    <string name="Cnacelarpedido">取消订单</string>
+    <string name="Dirreccion">地址</string>
+    <string name="listape2">订单列表</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">你好，空白片段</string>
+    <string name="cambiarpass">更改密码</string>
+
+</resources>

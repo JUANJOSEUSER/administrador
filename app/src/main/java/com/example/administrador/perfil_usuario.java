@@ -3,8 +3,7 @@ package com.example.administrador;
 import static android.app.Activity.RESULT_OK;
 
 
-
-
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,6 +15,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +32,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -53,6 +56,7 @@ public class perfil_usuario extends Fragment {
     private String mParam2;
 FirebaseAuth firebaseAuth;
 FirebaseUser user;
+FirebaseFirestore firestore;
 alert alerta;
     ImageView image;
     private static final int CATEGORY_APP_GALLERY = 1;
@@ -88,6 +92,7 @@ alert alerta;
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -104,6 +109,7 @@ alert alerta;
         firebaseAuth=FirebaseAuth.getInstance();
         user=firebaseAuth.getCurrentUser();
         nom.setText(user.getEmail());
+        firestore=FirebaseFirestore.getInstance();
         salir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,11 +148,16 @@ alert alerta;
                 alert.setPositiveButton("aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        String gmail=user.getEmail();
                         user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
+                                    firestore.collection("usuarios").document(gmail).delete();
+                                    storage.child("usuarios").child(gmail).delete();
+                                    sumar_finalizado();
                                     alerta=new alert("se ha eliminado su cuenta correctamente");
+                                    getActivity().finish();
                                 }else{
                                     alerta=new alert("no se ha elimiando la cuenta");
                                 }
@@ -250,6 +261,16 @@ alert.show();
             }
         });
 leer(user.getEmail(),image);
+
+a.findViewById(R.id.pedidos).setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        pedidos vista=new pedidos();
+
+        vista.setArguments(getArguments());
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmento,vista).addToBackStack(null).commit();
+    }
+});
         return a;
     }
     public void leer(String a, ImageView v) {
@@ -266,6 +287,29 @@ leer(user.getEmail(),image);
             @Override
             public void onFailure(@NonNull Exception exception) {
 
+            }
+        });
+
+    }
+    public void sumar_finalizado(){
+        firestore.collection("pedidos").document("usuarios de baja").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                int a= documentSnapshot.getLong("numero").intValue();
+                a++;
+
+                DocumentReference ad= firestore.collection("pedidos").document("usuarios de baja");
+                ad.update("numero",a).isSuccessful();
+            }
+        });
+        firestore.collection("pedidos").document("usuarios actuales").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                int a= documentSnapshot.getLong("numero").intValue();
+                a--;
+
+                DocumentReference ad= firestore.collection("pedidos").document("usuarios actuales");
+                ad.update("numero",a).isSuccessful();
             }
         });
 

@@ -12,6 +12,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -164,10 +166,16 @@ Button boton_añadir;
 
         return a;
     }
-
-    public void consulta() {
+    @Override
+    public void onResume() {
+        if (comienzo()==true){
+            alerta();
+            colocar();
+        }
+        super.onResume();
 
     }
+
     public ArrayList<String> unicos(ArrayList<String> a) {
         if (a!=null&&a.size()!=0){
             ArrayList<String> unicos = new ArrayList<>();
@@ -232,15 +240,16 @@ Button boton_añadir;
                    switch (opciones[which]){
                        case "ELIMINAR":
                           eliminar(nuevalista,pos);
-                            prod.notifyDataSetChanged();
+
                            break;
                        case "AÑADIR":
                            nuevalista.add(unicos.get(pos));
                           añadir(nuevalista);
+
                            break;
                        case "VER MAS":
                            mandar_datos(unicos.get(pos));
-                           ver_mas vista=new ver_mas();
+                           vista_producto_compra vista=new vista_producto_compra();
                            vista.setArguments(getArguments());
                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmento,vista).addToBackStack(null).commit();
                            break;
@@ -309,7 +318,7 @@ public void eliminar(ArrayList<String>n,int pos){
                 leer(unicos.get(position), img);
                 img.setLayoutParams(params);
                 p1.setText(unicos.get(position));
-                p3.setText(String.valueOf(conteo(listas,unicos.get(position))));
+                p3.setText("Cantidad: "+String.valueOf(conteo(listas,unicos.get(position))));
 
 
                 refenrencia.child("productos").child(unicos.get(position)).addValueEventListener(new ValueEventListener() {
@@ -333,7 +342,10 @@ public void eliminar(ArrayList<String>n,int pos){
             int preci=0;
             int resultado=0;
             public void consulta(ArrayList<String>a){
-
+                resultado=0;
+                preci=0;
+                precio_guardado=0;
+                precio_final.setText("");
                 for (int i = 0; i <a.size() ; i++) {
                     refenrencia.child("productos").child(listas.get(i)).addValueEventListener(new ValueEventListener() {
 
@@ -407,6 +419,59 @@ public void eliminar(ArrayList<String>n,int pos){
         SharedPreferences librito= getActivity().getSharedPreferences("intermediador", Context.MODE_PRIVATE);//se coloca el nombre del xml y el context si quiere ser privado o de acceso restringido
         SharedPreferences.Editor libro=librito.edit();//editor hace la funcion de poder escribir en el xml mandadole la clave y el valor
         libro.putString("producto",producto);
+
+        libro.commit();
+    }
+    public boolean comienzo(){
+        SharedPreferences librito= getActivity().getSharedPreferences("intermediador", Context.MODE_PRIVATE);
+        return librito.getBoolean("felicidades",false);
+    }
+    @SuppressLint("MissingInflatedId")
+    public void alerta(){
+        AlertDialog.Builder s=new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = getLayoutInflater();
+        View view =getLayoutInflater().inflate(R.layout.felicidades,null);
+        s.setView(view);
+        TextView nombre=view.findViewById(R.id.Nombre_finalizado);
+        TextView id=view.findViewById(R.id.numero_pedido);
+        TextView dir=view.findViewById(R.id.Dirreccion_final);
+        firestore.collection("usuarios").document(user.getEmail()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                nombre.setText(documentSnapshot.getString("nombre"));
+                ArrayList<String>pedi=new ArrayList<>();
+                pedi= (ArrayList<String>) documentSnapshot.get("trasporte");
+                int a=pedi.size();
+                id.setText("Pedido# "+pedi.get(a-1));
+                dir.setText(documentSnapshot.getString("dirrecion"));
+            }
+        });
+        s.setNegativeButton("Inicio", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                renplace(new productos_usuarios());
+            }
+        });
+        s.setPositiveButton("Pedidos", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                renplace(new pedidos());
+            }
+        });
+        s.show();
+
+    }
+    public void renplace(Fragment a){
+        FragmentManager d=getParentFragmentManager();
+        FragmentTransaction ad=d.beginTransaction();
+        ad.replace(R.id.fragmento,a);
+        ad.addToBackStack(null);
+        ad.commit();
+    }
+    public void colocar(){//cada vez que se inicia seccion se crea un xml donde guardaremos datos en memoria
+        SharedPreferences librito= getActivity().getSharedPreferences("intermediador", Context.MODE_PRIVATE);//se coloca el nombre del xml y el context si quiere ser privado o de acceso restringido
+        SharedPreferences.Editor libro=librito.edit();//editor hace la funcion de poder escribir en el xml mandadole la clave y el valor
+        libro.putBoolean("felicidades",false);
 
         libro.commit();
     }

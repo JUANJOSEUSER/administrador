@@ -1,7 +1,10 @@
 package com.example.administrador;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,6 +12,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -91,6 +98,7 @@ public class vista_producto_compra extends Fragment {
 TextView Nombre,precio,talla,descripcion;
     Button cesta,comprar;
     ImageView imagen;
+    RecyclerView reseñas;
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,10 +110,12 @@ TextView Nombre,precio,talla,descripcion;
         talla=a.findViewById(R.id.Compra_talla);
         descripcion=a.findViewById(R.id.Compra_descripcion);
         imagen=a.findViewById(R.id.Compra_imagen);
-        cesta=a.findViewById(R.id.añadir_cesta);
         firestore=FirebaseFirestore.getInstance();
         auth=FirebaseAuth.getInstance();
         user=auth.getCurrentUser();
+        reseñas=a.findViewById(R.id.reseñas);
+        LinearLayoutManager lineal2 = new LinearLayoutManager(getContext());
+        reseñas.setLayoutManager(lineal2);
 
         refenrencia= FirebaseDatabase.getInstance().getReference();
         refenrencia.child("productos").child(comienzo()).addValueEventListener(new ValueEventListener() {
@@ -113,7 +123,7 @@ TextView Nombre,precio,talla,descripcion;
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Nombre.setText(snapshot.child("nombre").getValue().toString());
                 precio.setText(snapshot.child("precio").getValue().toString());
-                talla.setText(snapshot.child("talla").getValue().toString());
+                talla.setText("Talla: "+snapshot.child("talla").getValue().toString());
                 descripcion.setText(snapshot.child("descripcion").getValue().toString());
             }
 
@@ -124,7 +134,19 @@ TextView Nombre,precio,talla,descripcion;
         });
 leer(comienzo(),imagen);
 consulta();
-cesta.setOnClickListener(new View.OnClickListener() {
+a.findViewById(R.id.Comprar_ya).setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+
+        Intent a=new Intent(getActivity(),pagos.class);
+        a.putExtra("precio",Integer.parseInt(precio.getText().toString()));
+        a.putExtra("modo",1);
+        a.putExtra("producto",Nombre.getText().toString());
+        startActivity(a);
+    }
+});
+
+a.findViewById(R.id.añadir_cesta).setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
 
@@ -135,7 +157,8 @@ cesta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    System.out.println("actualizado");//alerta
+                    alert alerta=new alert("se ha añadido a la cesta exitosamente");
+                    alerta.show(getParentFragmentManager(),"alerta");
                 }
             }
         });
@@ -143,6 +166,30 @@ cesta.setOnClickListener(new View.OnClickListener() {
     }
 });
         return a;
+    }
+
+    @Override
+    public void onResume() {
+        if (comienzo2()==true){
+        alerta();
+        colocar();
+    }
+        super.onResume();
+
+    }
+
+    public void añadir(String a){
+        ArrayList<String> nuevalista=new ArrayList<>();
+        nuevalista.add(a);
+        DocumentReference refencia=firestore.collection("usuarios").document(user.getEmail());
+        refencia.update("productos",nuevalista).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    System.out.println("añadido");
+                }
+            }
+        });
     }
     public void consulta(){
         firestore.collection("usuarios").document(user.getEmail()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -174,4 +221,59 @@ cesta.setOnClickListener(new View.OnClickListener() {
         });
 
     }
+    public boolean comienzo2(){
+        SharedPreferences librito= getActivity().getSharedPreferences("intermediador", Context.MODE_PRIVATE);
+        return librito.getBoolean("felicidades",false);
+    }
+    public void colocar(){//cada vez que se inicia seccion se crea un xml donde guardaremos datos en memoria
+        SharedPreferences librito= getActivity().getSharedPreferences("intermediador", Context.MODE_PRIVATE);//se coloca el nombre del xml y el context si quiere ser privado o de acceso restringido
+        SharedPreferences.Editor libro=librito.edit();//editor hace la funcion de poder escribir en el xml mandadole la clave y el valor
+        libro.putBoolean("felicidades",false);
+
+        libro.commit();
+    }
+    @SuppressLint("MissingInflatedId")
+    public void alerta(){
+        AlertDialog.Builder s=new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = getLayoutInflater();
+        View view =getLayoutInflater().inflate(R.layout.felicidades,null);
+        s.setView(view);
+
+        TextView nombre=view.findViewById(R.id.Nombre_finalizado);
+        TextView id=view.findViewById(R.id.numero_pedido);
+        TextView dir=view.findViewById(R.id.Dirreccion_final);
+        firestore.collection("usuarios").document(user.getEmail()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                nombre.setText(documentSnapshot.getString("nombre"));
+                ArrayList<String>pedi=new ArrayList<>();
+                pedi= (ArrayList<String>) documentSnapshot.get("trasporte");
+                int a=pedi.size();
+                id.setText(pedi.get(a-1));
+                dir.setText(documentSnapshot.getString("dirrecion"));
+            }
+        });
+        s.setNegativeButton("Inicio", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                renplace(new productos_usuarios());
+            }
+        });
+        s.setPositiveButton("Pedidos", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                renplace(new pedidos());
+            }
+        });
+s.show();
+
+    }
+    public void renplace(Fragment a){
+        FragmentManager d=getParentFragmentManager();
+        FragmentTransaction ad=d.beginTransaction();
+        ad.replace(R.id.fragmento,a);
+        ad.addToBackStack(null);
+        ad.commit();
+    }
+
 }

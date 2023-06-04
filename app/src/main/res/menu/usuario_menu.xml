@@ -3,15 +3,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/inicio"
-        android:icon="@drawable/home_solid_icon_235478"
+        android:id="@+id/inicio_usuario"
+        android:checkable="true"
+        android:checked="false"
+        android:enabled="true"
+        android:icon="@drawable/home_icon_icons_com_73532"
         android:title="INICIO" />
     <item
+        android:id="@+id/inicio"
+        android:checkable="true"
+        android:checked="false"
+        android:enabled="true"
+        android:icon="@drawable/shipment_shipments_package_delivery_box_ecommerce_icon_224941"
+        android:title="PRODUCTOS" />
+    <item
         android:id="@+id/cesta"
+        android:checkable="true"
+        android:checked="false"
+        android:enabled="true"
         android:icon="@drawable/shoppingcart_80945"
         android:title="CESTA" />
     <item
         android:id="@+id/perfil"
+        android:checkable="true"
+        android:checked="false"
+        android:enabled="true"
         android:icon="@drawable/account_avatar_face_man_people_profile_user_icon_123197"
         android:title="PERFIL" />
 </menu>

@@ -2,10 +2,17 @@ package com.example.administrador;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,7 +36,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import modelo.info_pedido;
-import modelo.pedidos;
 import modelo.usuario;
 
 public class pagos extends AppCompatActivity {
@@ -41,7 +47,9 @@ public class pagos extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser user;
     usuario us=new usuario();
-    int num=0;
+    int num=0,num2=0;
+    String producto;
+    int modo=2;
     public static String clave="AZaouBk2jcTFbDk-ajw-IwusjijC9aBwQibg7iJ_03M-j2CDvADQHCnIGP9JV5JpS-jl2Ju6vO1zGlbT";
 
     PayPalConfiguration config=new PayPalConfiguration().environment(PayPalConfiguration.ENVIRONMENT_NO_NETWORK).clientId(clave);
@@ -56,6 +64,8 @@ public class pagos extends AppCompatActivity {
         user=auth.getCurrentUser();
         total=findViewById(R.id.total);
         total_guardado=parametros.getInt("precio");
+        modo=parametros.getInt("modo");
+        producto=parametros.getString("producto");
         total.setText(String.valueOf(total_guardado+"€"));
         telefono=findViewById(R.id.telefono_total);
         dirrecion=findViewById(R.id.dirrecion);
@@ -77,6 +87,12 @@ public class pagos extends AppCompatActivity {
                 num=documentSnapshot.getLong("numero").intValue();
             }
         });
+        firestore.collection("pedidos").document("emision").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                num2=documentSnapshot.getLong("numero").intValue();
+            }
+        });
         Intent se=new Intent(this, PayPalService.class);
         se.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,config);
         startService(se);
@@ -87,7 +103,7 @@ public class pagos extends AppCompatActivity {
         super.onDestroy();
     }
     public void pagar(View view) {
-        System.out.println(num);
+
         if (!nombre.getText().toString().equals("")&&!telefono.getText().toString().equals("")&&!dirrecion.getText().toString().equals("")){
             PayPalPayment pay=new PayPalPayment(new BigDecimal(total_guardado),"EUR","pago a Realizar",PayPalPayment.PAYMENT_INTENT_SALE);
             Intent a=new Intent(this, PaymentActivity.class);
@@ -95,7 +111,8 @@ public class pagos extends AppCompatActivity {
             a.putExtra(PaymentActivity.EXTRA_PAYMENT,pay);
             startActivityForResult(a,paypalcode);
         }else{
-            System.out.println("falta");
+            alerta=new alert("Falta por colocar la dirrecion de envio");
+            alerta.show(getSupportFragmentManager(),"alerta");
         }
 
     }
@@ -115,11 +132,34 @@ public class pagos extends AppCompatActivity {
                                 us=documentSnapshot.toObject(usuario.class);
                                 ArrayList<info_pedido> addf=new ArrayList<>();
                                 num=num+1;
-                                info_pedido inf=new info_pedido(String.valueOf(num),us.getNombre(),us.getTelefono(),us.getDirrecion(),String.valueOf(total_guardado),user.getEmail(),"En proceso");
-                                firestore.collection("nuevos pedidos").document(String.valueOf(num)).set(inf);
+                                num2=num2+1;
+                                DocumentReference ref= firestore.collection("usuarios").document(user.getEmail());
+                                ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        us=documentSnapshot.toObject(usuario.class);
+                                        info_pedido inf=null;
+                                        if (modo==1){
+                                            ArrayList<String >pro=new ArrayList<>();
+                                            pro.add(producto);
+                                            inf=new info_pedido(String.valueOf(num),us.getNombre(),us.getTelefono(),us.getDirrecion(),String.valueOf(total_guardado),user.getEmail(),"En proceso",pro);
+                                        }else{
+                                           inf=new info_pedido(String.valueOf(num),us.getNombre(),us.getTelefono(),us.getDirrecion(),String.valueOf(total_guardado),user.getEmail(),"En proceso",us.getProductos());
+                                        }
+
+                                        firestore.collection("nuevos pedidos").document(String.valueOf(num)).set(inf);
+
+
+                                    }
+                                });
+                                pedidos_admin(num);
                                 DocumentReference s=firestore.collection("pedidos").document("total");
+                                DocumentReference df=firestore.collection("pedidos").document("emision");
+                                df.update("numero",num2).isSuccessful();
                                 s.update("numero",num).isSuccessful();
                                 limpiar();
+
+
                             }
                         });
 
@@ -141,14 +181,46 @@ public class pagos extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 us=documentSnapshot.toObject(usuario.class);
-
-                us.getTrasporte().add(String.valueOf(num));
-                us.getHistorial().addAll(us.getProductos());
-                us.getProductos().clear();
+if (modo==1){
+    ArrayList<String >pre=new ArrayList<>();
+    pre.add(comienzo());
+    us.getHistorial().addAll(pre);
+    us.getTrasporte().add(String.valueOf(num));
+}else{
+    us.getTrasporte().add(String.valueOf(num));
+    us.getHistorial().addAll(us.getProductos());
+    us.getProductos().clear();
+}
                 firestore.collection("usuarios").document(user.getEmail()).set(us);
-                finish();
+mandar_datos();
+finish();
+
+
 
             }
         });
+    }
+    public void pedidos_admin(int a){
+        firestore.collection("pedidos").document("pedidos_admin").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+            ArrayList<String>lista=new ArrayList<>();
+            lista= (ArrayList<String>) documentSnapshot.get("pedidos");
+            lista.add(String.valueOf(a));
+            DocumentReference R=firestore.collection("pedidos").document("pedidos_admin");
+            R.update("pedidos",lista).isSuccessful();
+            }
+        });
+    }
+    public String comienzo(){
+        SharedPreferences librito= getApplication().getSharedPreferences("intermediador", Context.MODE_PRIVATE);
+        return librito.getString("producto","");
+    }
+    public void mandar_datos(){//cada vez que se inicia seccion se crea un xml donde guardaremos datos en memoria
+        SharedPreferences librito= getApplication().getSharedPreferences("intermediador", Context.MODE_PRIVATE);//se coloca el nombre del xml y el context si quiere ser privado o de acceso restringido
+        SharedPreferences.Editor libro=librito.edit();//editor hace la funcion de poder escribir en el xml mandadole la clave y el valor
+        libro.putBoolean("felicidades",true);
+
+        libro.commit();
     }
 }

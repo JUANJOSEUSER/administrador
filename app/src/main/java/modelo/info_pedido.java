@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class info_pedido  {
     String nombre,telefono,dirrecion,pago,correo,segumiento,id;
+    ArrayList<String>productos;
 
 
-    public info_pedido(String id,String nombre, String telefono, String dirrecion, String pago, String correo, String segumiento) {
+    public info_pedido(String id,String nombre, String telefono, String dirrecion, String pago, String correo, String segumiento,ArrayList<String>product) {
         this.id=id;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -14,9 +15,17 @@ public class info_pedido  {
         this.pago = pago;
         this.correo = correo;
         this.segumiento = segumiento;
+        this.productos=product;
 
     }
 
+    public ArrayList<String> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(ArrayList<String> productos) {
+        this.productos = productos;
+    }
 
     public String getId() {
         return id;

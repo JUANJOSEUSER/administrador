@@ -13,13 +13,13 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cesta_items"
-            android:layout_width="410dp"
-            android:layout_height="437dp"
+            android:layout_width="304dp"
+            android:layout_height="443dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.496">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -27,6 +27,7 @@
             android:id="@+id/button2"
             android:layout_width="152dp"
             android:layout_height="48dp"
+            android:background="@drawable/botones_primary"
             android:text="Pagar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,13 +40,14 @@
             android:id="@+id/precio_final"
             android:layout_width="219dp"
             android:layout_height="35dp"
-            android:layout_marginBottom="16dp"
-            android:text="TextView"
+            android:text="Total"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.083"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.041"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.97" />
 
         <TextView
             android:id="@+id/textView8"

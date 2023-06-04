@@ -7,8 +7,9 @@
     tools:context=".configuraciones_admin">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="364dp"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -17,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Correo"
+            android:textAlignment="center"
             android:textColor="#FF0000"
             android:textSize="34sp" />
 
@@ -27,9 +29,9 @@
             android:layout_margin="10dp"
             android:minHeight="48dp"
             android:onClick="vercuenta"
-            android:text="Cambiar Correo"
+            android:text="@string/cambiarcorreo"
             android:textColor="#000000"
-            android:textSize="32sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -39,9 +41,9 @@
             android:layout_margin="10dp"
             android:minHeight="48dp"
             android:onClick="añadiradmin"
-            android:text="Añadir usuario admin"
+            android:text="@string/Añadiradmin"
             android:textColor="#000000"
-            android:textSize="32sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -51,9 +53,9 @@
             android:layout_margin="10dp"
             android:minHeight="48dp"
             android:onClick="cambiopass"
-            android:text="Cambiar contraseña"
+            android:text="@string/cambiarpass"
             android:textColor="#000000"
-            android:textSize="32sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -65,16 +67,16 @@
             android:onClick="salir"
             android:text="@string/cerrar_sesion"
             android:textColor="#000000"
-            android:textSize="32sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/eliminar_cuenta"
             android:layout_width="317dp"
             android:layout_height="wrap_content"
-            android:layout_margin="40dp"
+            android:layout_margin="10dp"
             android:background="@drawable/buttom_secundary"
-            android:text="Eliminar Cuenta" />
+            android:text="@string/eliminarcuenta" />
 
     </LinearLayout>
 </FrameLayout>

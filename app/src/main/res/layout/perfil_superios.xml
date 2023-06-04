@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/img_perfil"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="#CD3030"
+    android:background="#9204BC"
     android:gravity="bottom"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/Nombre_perfil_sup"
@@ -13,5 +15,6 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="#FFFFFF"
-        android:textSize="34sp" />
+        android:textSize="24sp" />
+
 </LinearLayout>

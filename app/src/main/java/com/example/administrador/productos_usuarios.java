@@ -31,6 +31,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -104,7 +105,12 @@ public class productos_usuarios extends Fragment {
         firebasedata.child("num_product").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                d.setProductos((ArrayList<String>) snapshot.child("Nombres").getValue());
+                ArrayList<String>ds=(ArrayList<String>) snapshot.child("Nombres").getValue();
+                Random r=new Random();
+                int a=r.nextInt(ds.size());
+                System.out.println(a);
+                ds.remove(a);
+                d.setProductos(ds);
                 d.notifyDataSetChanged();
             }
 
@@ -159,7 +165,7 @@ public class productos_usuarios extends Fragment {
 
 
         private class adaptadorhold extends RecyclerView.ViewHolder implements View.OnClickListener{
-            TextView tv1, tv2;
+            TextView tv1, tv2,tv3;
             ImageView im;
 
             public adaptadorhold(@NonNull View itemView) {
@@ -167,6 +173,7 @@ public class productos_usuarios extends Fragment {
                 im = itemView.findViewById(R.id.imagen_producto_usuario);
                 tv1 = itemView.findViewById(R.id.Nombre_producto);
                 tv2 = itemView.findViewById(R.id.Precio_producto);
+                tv3=itemView.findViewById(R.id.tallas_v);
                 itemView.setOnClickListener(this::onClick);
             }
 
@@ -179,7 +186,8 @@ public class productos_usuarios extends Fragment {
                 firebasedata.child("productos").child(productos.get(pos)).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        tv2.setText(snapshot.child("precio").getValue().toString());
+                        tv2.setText(snapshot.child("precio").getValue().toString()+"€");
+                        tv3.setText("Talla: "+snapshot.child("talla").getValue().toString());
                     }
 
                     @Override

@@ -157,8 +157,10 @@ public boolean super_usuario(String usuario,String contraseña){
        firestore.collection("usuarios").document(user).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                 Intent a=new Intent(getApplication(),main_usuario.class);
-                 startActivity(a);
+                if (documentSnapshot.exists()){
+                    Intent a=new Intent(getApplication(),main_usuario.class);
+                    startActivity(a);
+                }
             }
         });
 

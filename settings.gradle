@@ -15,5 +15,5 @@ dependencyResolutionManagement {
 
     }
 }
-rootProject.name = "administrador"
+rootProject.name = "Profit"
 include ':app'

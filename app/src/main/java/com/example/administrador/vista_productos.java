@@ -30,6 +30,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import modelo.model_product;
 
@@ -99,6 +100,9 @@ public class vista_productos extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     ArrayList<String> d=new ArrayList<>();
+
+
+
                     prod.setListas((ArrayList) snapshot.child("Nombres").getValue());
                     prod.notifyDataSetChanged();
 
@@ -114,6 +118,7 @@ public class vista_productos extends Fragment {
             }
 
         });
+
          return a;
     }
     private class productos extends RecyclerView.Adapter<productos.Adaptador> {
@@ -148,7 +153,7 @@ public class vista_productos extends Fragment {
         }
 
         private class Adaptador extends RecyclerView.ViewHolder implements View.OnClickListener {
-            TextView p1, p2;
+            TextView p1, p2,p3;
             ImageView img;
 
 
@@ -157,6 +162,7 @@ public class vista_productos extends Fragment {
                 super(itemView);
                 p1 = itemView.findViewById(R.id.cesta_nombre);
                 p2 = itemView.findViewById(R.id.cesta_precio);
+                p3=itemView.findViewById(R.id.talla_vista);
                 img = itemView.findViewById(R.id.cesta_img);
                 itemView.setOnClickListener(this);
 
@@ -175,7 +181,8 @@ public class vista_productos extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()){
-                            p2.setText(snapshot.child("precio").getValue().toString());
+                            p2.setText(snapshot.child("precio").getValue().toString()+"€");
+                            p3.setText("Talla: "+snapshot.child("talla").getValue().toString());
                         }
                     }
 

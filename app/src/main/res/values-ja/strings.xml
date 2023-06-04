@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Profit</string>
+    <string name="abrir">開く</string>
+    <string name="cerrar">閉じる</string>
+    <string name="aceptar">承諾する</string>
+    <string name="cancelar">キャンセル</string>
+    <string name="micuenta">マイアカウント</string>
+    <string name="texto_restaurar">Profitアカウントに関連付けられたメールアドレスを入力して、パスワードを復元するためのリンクをお送りします。</string>
+    <string name="restaurar">パスワードを復元する</string>
+    <string name="ingresar_p1">ログイン</string>
+    <string name="crear_cuenta_p1">アカウントを作成する</string>
+    <string name="olvidar">パスワードを忘れた</string>
+
+
+    <string name="cerrar_sesion">ログアウト</string>
+
+    <string name="nombre">名前</string>
+    <string name="telefono">電話番号</string>
+    <string name="gmail">Gmail</string>
+    <string name="contra">パスワード</string>
+    <string name="Confirmarcontra">パスワードの確認</string>
+    <string name="politicas">利用規約に同意する</string>
+    <string name="crear">作成する</string>
+    <string name="pago">支払い</string>
+    <string name="entrega">迅速かつ安全な配送</string>
+    <string name="productostuestilo">あなたのスタイルに合った商品</string>
+    <string name="pagorealizado">支払いが成功しました</string>
+    <string name="listado">商品リスト</string>
+    <string name="comprarya">今すぐ購入する</string>
+    <string name="inicioanuncio">すべての女性に向けた高品質のスポーツウェアの豊富な経験を持っています</string>
+    <string name="total">支払い合計</string>
+    <string name="Cambiarcontra">パスワードを変更する</string>
+    <string name="cambiarcorreo">メールアドレスを変更する</string>
+    <string name="Cerrarsesion">ログアウト</string>
+    <string name="Añadiradmin">新しい管理者を追加する</string>
+    <string name="eliminarcuenta">アカウントを削除する</string>
+
+    <string name="metodopago">支払い方法</string>
+    <string name="paypal">PayPalはProfit製品の購入に使用される支払い方法であり、ユーザーにより良い体験を提供します</string>
+    <string name="envios">Profitによる迅速かつ安全な配送で、より良い体験をお届けします</string>
+    <string name="seguridad">Profitは、ユーザーに安全な配送と支払い方法を提供します</string>
+    <string name="redes">ソーシャルメディア</string>
+    <string name="pedidos">注文</string>
+    <string name="pedidosactuales">現在の注文</string>
+    <string name="Historial">履歴</string>
+    <string name="modulos">有効なモジュール</string>
+    <string name="estadistica">統計</string>
+    <string name="gestionpedidos">注文管理</string>
+    <string name="Configuracion">設定</string>
+    <string name="Gestiondeproductos">商品管理</string>
+    <string name="precio">価格</string>
+    <string name="infopedido">注文情報</string>
+    <string name="Factura">請求書をダウンロードする</string>
+    <string name="entregado">配送済み</string>
+    <string name="Cnacelarpedido">注文をキャンセルする</string>
+    <string name="Dirreccion">住所</string>
+    <string name="listape2">注文リスト</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">こんにちは、空のフラグメント</string>
+    <string name="cambiarpass">パスワードを変更する</string>
+
+</resources>

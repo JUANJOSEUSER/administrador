@@ -1,14 +1,63 @@
 <resources>
-    <string name="app_name">administrador</string>
+    <string name="app_name">Profit</string>
     <string name="abrir">abrir</string>
     <string name="cerrar">cerrar</string>
-    <string name="texto_restaurar">Introduce el e-mail asociado a tu cuenta de TicTacToe y te enviaremos un enlace para restaurar tu contraseña.</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="micuenta">Mi cuenta</string>
+    <string name="texto_restaurar">Introduce el e-mail asociado a tu cuenta de Profit y te enviaremos un enlace para restaurar tu contraseña.</string>
     <string name="restaurar">Restaurar contraseña</string>
     <string name="ingresar_p1">Ingresar</string>
     <string name="crear_cuenta_p1">Crear cuenta</string>
     <string name="olvidar">He olvidado mi contraseña</string>
-    <string name="gmail">Gmail</string>
+
     <string name="cerrar_sesion">Cerrar sesion</string>
+
+
+<!--    formulario-->
+    <string name="nombre">Nombre</string>
+    <string name="telefono">Telefono</string>
+    <string name="gmail">Gmail</string>
+    <string name="contra">Contraseña</string>
+    <string name="Confirmarcontra">Confirmar contraseña</string>
+    <string name="politicas">Acepta los terminos y condiciones</string>
+    <string name="crear">Crear</string>
+    <string name="pago">Pago</string>
+    <string name="entrega">Entrega rapida y segura</string>
+    <string name="productostuestilo">Productos a tu estilo</string>
+    <string name="pagorealizado">Pago Realizado con exito</string>
+    <string name="listado">Lista de productos</string>
+    <string name="comprarya">Comprar ya</string>
+    <string name="inicioanuncio">Poseemos gran experiencia en ropa deportiva de gran calidad para todas las mujeres </string>
+    <string name="total">Total a Pagar</string>
+    <string name="Cambiarcontra">Cambiar contraseña</string>
+    <string name="cambiarcorreo">Cambiar correo</string>
+    <string name="Cerrarsesion">Cerrar sesion</string>
+    <string name="Añadiradmin">Añadir nuevo administrador</string>
+    <string name="eliminarcuenta">Eliminar cuenta</string>
+
+    <string name="metodopago">Metodo de pago</string>
+    <string name="paypal">Paypal metodo de pago utilizado para la compra de productos de profit para un mejor manejo al usuario</string>
+    <string name="envios">Envio rapidos y seguros con profit para un envio rapido para una mejor experiencia</string>
+    <string name="seguridad">Profit ofrece un metodo seguro de envios y pagos para sus usuarios </string>
+    <string name="redes">Redes Sociales</string>
+    <string name="pedidos">Pedidos</string>
+    <string name="pedidosactuales">Pedidos actuales</string>
+    <string name="Historial">Historial</string>
+    <string name="modulos">Modulos habilitados</string>
+    <string name="estadistica">Estadistica</string>
+    <string name="gestionpedidos">Gestion de pedidos</string>
+    <string name="Configuracion">Configuracion</string>
+    <string name="Gestiondeproductos">Gestion de productos</string>
+    <string name="precio">Precio</string>
+    <string name="infopedido">Informacion de pedido</string>
+    <string name="Factura">Descargar Factura</string>
+    <string name="entregado">Entregado</string>
+    <string name="Cnacelarpedido">Cancelar Pedido</string>
+    <string name="Dirreccion">Direccion</string>
+    <string name="listape2">Lista del pedido</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cambiarpass">Cambiar contraseña</string>
 </resources>

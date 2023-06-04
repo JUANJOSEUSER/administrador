@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="Cambio de Correo"
+        android:text="@string/cambiarcorreo"
         android:textAlignment="center"
         android:textColor="#FF0000"
         android:textSize="24sp" />

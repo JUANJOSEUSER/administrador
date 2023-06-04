@@ -12,8 +12,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vista"
-            android:layout_width="398dp"
-            android:layout_height="590dp"
+            android:layout_width="362dp"
+            android:layout_height="566dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

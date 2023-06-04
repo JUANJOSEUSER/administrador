@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:textAlignment="center">
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_margin="10dp"
+        android:text="Informacion de pedido"
+        android:textAlignment="center"
+        android:textColor="#FF0505"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/Correo_id"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_margin="10dp"
+        android:text="TextView"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="166dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pedido #"
+                android:textAlignment="center"
+                android:textColor="#FF0000" />
+
+            <TextView
+                android:id="@+id/Pedido_id"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="TextView"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total"
+                android:textAlignment="center"
+                android:textColor="#FF0000" />
+
+            <TextView
+                android:id="@+id/costo_id"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="TextView"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Seguimiento"
+                android:textAlignment="center"
+                android:textColor="#FF0000" />
+
+            <TextView
+                android:id="@+id/Seguimiento_id"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="TextView"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Telefono"
+                android:textAlignment="center"
+                android:textColor="#FF0000" />
+
+            <TextView
+                android:id="@+id/telefono_id"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="TextView"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_margin="10dp"
+        android:text="@string/Dirreccion"
+        android:textAlignment="center"
+        android:textColor="#FF0000" />
+
+    <TextView
+        android:id="@+id/Dirrecion_id"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_margin="10dp"
+        android:text="TextView"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/FACTURA"
+            android:layout_width="189dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/botones_primary"
+            android:text="@string/Factura" />
+
+        <Button
+            android:id="@+id/entregado"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/botones_primary"
+            android:text="@string/entregado"
+            android:textColor="#000000" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cancelar_pedidos"
+        android:layout_width="295dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/buttom_secundary"
+        android:text="@string/Cnacelarpedido" />
+
+</LinearLayout>

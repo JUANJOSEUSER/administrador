@@ -16,7 +16,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +39,7 @@ public class new_product extends AppCompatActivity {
     ArrayList<String> num_product = new ArrayList<>();
     scale_anim animacion=new scale_anim();
 
-
+alert alerta;
     EditText nombre, Descripcion, precio, Talla;
     StorageReference storage;
     ImageView imagen,conf_nom,conf_des,conf_precio,conf_talla;
@@ -102,7 +104,17 @@ public class new_product extends AppCompatActivity {
         vf.verificador(nombre, Descripcion,precio,Talla,conf_nom,conf_precio,conf_des,conf_talla);
         modelo = new model_product(nombre.getText().toString(), Descripcion.getText().toString(), Talla.getText().toString(), precio.getText().toString());
 
-        Database.child("productos").child(nombre.getText().toString()).setValue(modelo);
+        Database.child("productos").child(nombre.getText().toString()).setValue(modelo).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    alertas=new alert("El producto se ha creado con exito");
+                }else{
+                    alertas=new alert("El producto no se ha creado");
+                }
+                alertas.show(getSupportFragmentManager(),"alertas");
+            }
+        });
     }
 
     @SuppressLint("ResourceType")

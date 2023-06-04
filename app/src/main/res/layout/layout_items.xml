@@ -2,10 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:id="@+id/ta"
 
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp">
+    android:layout_marginBottom="10dp"
+    android:background="#4FCACACA">
 
     <ImageView
         android:id="@+id/cesta_img"
@@ -15,16 +17,17 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="223dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/cesta_nombre"
-            android:layout_width="171dp"
+            android:layout_width="match_parent"
             android:layout_height="32dp"
             android:text="TextView"
+            android:textAlignment="center"
             android:textSize="20sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,22 +37,23 @@
 
             <TextView
                 android:id="@+id/cesta_precio"
-                android:layout_width="156dp"
-                android:layout_height="27dp"
-                android:layout_marginBottom="32dp"
+                android:layout_width="119dp"
+                android:layout_height="34dp"
                 android:text="TextView"
                 android:textAlignment="viewStart"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.768" />
 
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="82dp"
                 android:layout_height="23dp"
-                android:text="Precio"
+                android:text="@string/precio"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,6 +61,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.027" />
+
+            <TextView
+                android:id="@+id/talla_vista"
+                android:layout_width="83dp"
+                android:layout_height="35dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.885"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.77" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 

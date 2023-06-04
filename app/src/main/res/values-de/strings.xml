@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="app_name">Profit</string>
+    <string name="abrir">Öffnen</string>
+    <string name="cerrar">Schließen</string>
+    <string name="aceptar">Akzeptieren</string>
+    <string name="cancelar">Abbrechen</string>
+    <string name="micuenta">Mein Konto</string>
+    <string name="texto_restaurar">Geben Sie die E-Mail-Adresse Ihres Profit-Kontos ein, und wir senden Ihnen einen Link zur Wiederherstellung Ihres Passworts.</string>
+    <string name="restaurar">Passwort wiederherstellen</string>
+    <string name="ingresar_p1">Anmelden</string>
+    <string name="crear_cuenta_p1">Konto erstellen</string>
+    <string name="olvidar">Ich habe mein Passwort vergessen</string>
+
+    <string name="cerrar_sesion">Abmelden</string>
+
+    <string name="nombre">Name</string>
+    <string name="telefono">Telefon</string>
+    <string name="gmail">Gmail</string>
+    <string name="contra">Passwort</string>
+    <string name="Confirmarcontra">Passwort bestätigen</string>
+    <string name="politicas">Die Nutzungsbedingungen akzeptieren</string>
+    <string name="crear">Erstellen</string>
+    <string name="pago">Zahlung</string>
+    <string name="entrega">Schnelle und sichere Lieferung</string>
+    <string name="productostuestilo">Produkte nach Ihrem Stil</string>
+    <string name="pagorealizado">Zahlung erfolgreich durchgeführt</string>
+    <string name="listado">Produktliste</string>
+    <string name="comprarya">Jetzt kaufen</string>
+    <string name="inicioanuncio">Wir haben große Erfahrung in hochwertiger Sportbekleidung für Frauen</string>
+    <string name="total">Gesamtbetrag</string>
+    <string name="Cambiarcontra">Passwort ändern</string>
+    <string name="cambiarcorreo">E-Mail ändern</string>
+    <string name="Cerrarsesion">Abmelden</string>
+    <string name="Añadiradmin">Neuen Administrator hinzufügen</string>
+    <string name="eliminarcuenta">Konto löschen</string>
+
+    <string name="metodopago">Zahlungsmethode</string>
+    <string name="paypal">Paypal ist eine Zahlungsmethode, die für den Kauf von Profit-Produkten verwendet wird und dem Benutzer ein besseres Erlebnis bietet</string>
+    <string name="envios">Schneller und sicherer Versand mit Profit für ein schnelles und verbessertes Erlebnis</string>
+    <string name="seguridad">Profit bietet seinen Benutzern eine sichere Methode für Versand und Zahlungen</string>
+    <string name="redes">Soziale Medien</string>
+    <string name="pedidos">Bestellungen</string>
+    <string name="pedidosactuales">Aktuelle Bestellungen</string>
+    <string name="Historial">Verlauf</string>
+    <string name="modulos">Aktivierte Module</string>
+    <string name="estadistica">Statistik</string>
+    <string name="gestionpedidos">Bestellverwaltung</string>
+    <string name="Configuracion">Einstellungen</string>
+    <string name="Gestiondeproductos">Produktverwaltung</string>
+    <string name="precio">Preis</string>
+    <string name="infopedido">Bestellinformationen</string>
+    <string name="Factura">Rechnung herunterladen</string>
+    <string name="entregado">Geliefert</string>
+    <string name="Cnacelarpedido">Bestellung stornieren</string>
+    <string name="Dirreccion">Adresse</string>
+    <string name="listape2">Bestellliste</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hallo leeres Fragment</string>
+    <string name="cambiarpass">Passwort ändern</string>
+
+
+</resources>

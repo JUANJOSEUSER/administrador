@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Profit</string>
+    <string name="abrir">Open</string>
+    <string name="cerrar">Close</string>
+    <string name="aceptar">Accept</string>
+    <string name="cancelar">Cancel</string>
+    <string name="micuenta">My Account</string>
+    <string name="texto_restaurar">Enter the email associated with your Profit account, and we will send you a link to restore your password.</string>
+    <string name="restaurar">Restore Password</string>
+    <string name="ingresar_p1">Log In</string>
+    <string name="crear_cuenta_p1">Create Account</string>
+    <string name="olvidar">I Forgot My Password</string>
+    <string name="cerrar_sesion">Log Out</string>
+
+    <string name="nombre">Name</string>
+    <string name="telefono">Phone</string>
+    <string name="gmail">Gmail</string>
+    <string name="contra">Password</string>
+    <string name="Confirmarcontra">Confirm Password</string>
+    <string name="politicas">Accept the terms and conditions</string>
+    <string name="crear">Create</string>
+    <string name="pago">Payment</string>
+    <string name="entrega">Fast and Secure Delivery</string>
+    <string name="productostuestilo">Products to Fit Your Style</string>
+    <string name="pagorealizado">Payment Successfully Made</string>
+    <string name="listado">Product List</string>
+    <string name="comprarya">Buy Now</string>
+    <string name="inicioanuncio">We have great experience in high-quality sportswear for all women</string>
+    <string name="total">Total to Pay</string>
+    <string name="Cambiarcontra">Change Password</string>
+    <string name="cambiarcorreo">Change Email</string>
+    <string name="Cerrarsesion">Log Out</string>
+    <string name="Añadiradmin">Add New Administrator</string>
+    <string name="eliminarcuenta">Delete Account</string>
+
+    <string name="metodopago">Payment Method</string>
+    <string name="paypal">Paypal is a payment method used for purchasing Profit products, providing a better user experience</string>
+    <string name="envios">Fast and secure shipping with Profit for a quick and enhanced experience</string>
+    <string name="seguridad">Profit offers a secure method of shipping and payments for its users</string>
+    <string name="redes">Social Media</string>
+    <string name="pedidos">Orders</string>
+    <string name="pedidosactuales">Current Orders</string>
+    <string name="Historial">History</string>
+    <string name="modulos">Enabled Modules</string>
+    <string name="estadistica">Statistics</string>
+    <string name="gestionpedidos">Order Management</string>
+    <string name="Configuracion">Settings</string>
+    <string name="Gestiondeproductos">Product Management</string>
+    <string name="precio">Price</string>
+    <string name="infopedido">Order Information</string>
+    <string name="Factura">Download Invoice</string>
+    <string name="entregado">Delivered</string>
+    <string name="Cnacelarpedido">Cancel Order</string>
+    <string name="Dirreccion">Address</string>
+    <string name="listape2">Order List</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cambiarpass">Change Password</string>
+
+</resources>

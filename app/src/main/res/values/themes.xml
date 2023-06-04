@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Administrador" parent="Theme.AppCompat.Light">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#0053F3</item>
+        <item name="colorPrimary">#911CFF</item>
 
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -11,13 +11,9 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">#911CFF</item>
         <!-- Customize your theme here. -->
 
     </style>
-    <style name="roundedImageView" parent="">
-    <item name="cornerFamily">rounded</item>
-    <item name="cornerSize">60dp</item>
-    <item name="color">@color/black</item>
-</style>
+
 </resources>
